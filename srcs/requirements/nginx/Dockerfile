@@ -1,7 +1,9 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get upgrade && apt-get install -y nginx
+RUN apt-get update && apt-get upgrade && apt-get install -y nginx openssl
 
-EXPOSE 20
+COPY conf/nginx.conf .
 
-CMD ["nginx", "-g", "daemon off"]
+EXPOSE 443
+
+CMD ["nginx", "-g", "daemon off;"]
