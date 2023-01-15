@@ -1,8 +1,20 @@
 version: "3.3"
+
+# volumes:
+#   - ./data:/home/ie-laabb/data
+
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: requirements/nginx/Dockerfile
+
+  # nginx:
+  #   image: nginx
+  #   build: ./requirements/nginx/
+  #   ports:
+  #     - "443:443"
+  #   restart: always
+
+  mariadb:
+    image: mariadb
+    build: ./requirements/mariadb/
     ports:
-      - "443:443"
+      - "433:433"
+    restart: always

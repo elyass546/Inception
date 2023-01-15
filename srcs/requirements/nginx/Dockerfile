@@ -6,11 +6,9 @@ COPY conf/nginx.conf  /etc/nginx/conf.d
 
 RUN	mkdir -p /etc/nginx/ssl
 
-COPY ./myhost.key /etc/nginx/ssl
+COPY ./tools/myhost.key /etc/nginx/ssl
 
-COPY ./myhost.crt /etc/nginx/ssl
-
-# RUN openssl genrsa -des3 4096
+COPY ./tools/myhost.crt /etc/nginx/ssl
 
 EXPOSE 443
 
