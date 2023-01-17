@@ -1,7 +1,10 @@
 version: "3.3"
 
 # volumes:
-#   - ./data:/home/ie-laabb/data
+  # mariadb:
+  #   name: mariadb=
+#   wordpress:
+#     name: wordpress
 
 services:
 
@@ -10,11 +13,24 @@ services:
   #   build: ./requirements/nginx/
   #   ports:
   #     - "443:443"
+  #   depends_on:
+  #     - wordpress
+  #   volumes:
+  #     # wordpress: 
   #   restart: always
 
   mariadb:
     image: mariadb
     build: ./requirements/mariadb/
-    ports:
-      - "433:433"
+    # volumes:
+    #   - mariadb:/home/ie-laabb/data/mariadb
     restart: always
+
+  # wordpress:
+  #   image: wordpress
+  #   build: ./requirements/wordpress/
+  #   volumes:
+  #     # - wordpress:/
+  #   depends_on:
+  #     - mariadb
+  #   restart: always

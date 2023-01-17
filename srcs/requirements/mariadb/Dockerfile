@@ -1,7 +1,9 @@
 FROM debian:buster
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install mariadb-client -y
+RUN apt-get update -y && apt-get upgrade -y && apt-get install mariadb-server -y
 
-# RUN systemctl start mariadb && systemctl enable mariadb
+COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-RUN mysql_secure_installation
+COPY ./tools/script.sh /
+
+CMD ["/script.sh"]
