@@ -1,9 +1,16 @@
 FROM debian:buster
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install mariadb-server -y
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/list/* && \
+    apt-get install -y mariadb-server mariadb-client
 
-COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY ./tools/script.sh /
+COPY ./tools/db_create.sql /var/www/
 
-CMD ["/script.sh"]
+EXPOSE 3306
+
+RUN service mysql start && mysql < /var/www/db_create.sql && rm -f /var/www/db_create.sql;
+
+CMD ["mysqld"]
