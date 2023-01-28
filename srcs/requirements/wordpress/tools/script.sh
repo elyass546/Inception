@@ -32,13 +32,16 @@ wp user create $wp_user $wp_user_email --role=author --user_pass=$wp_user_pwd --
 
 wp user create $wp_test $wp_test_email --role=author --user_pass=$wp_test --allow-root
 
+wp plugin install redis-cache --activate --allow-root
+
 wp plugin update --all --allow-root
 
 wp theme install twentytwentytwo --activate --allow-root
 
 sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 
-mkdir /run/php
+wp redis enable --allow-root
 
+mkdir /run/php
 
 /usr/sbin/php-fpm7.3 -F
