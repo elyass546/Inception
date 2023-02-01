@@ -15,7 +15,6 @@ chmod +x wp-cli.phar
 
 mv wp-cli.phar /usr/local/bin/wp
 
-
 wp core download --allow-root
 
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
@@ -36,11 +35,11 @@ wp plugin install redis-cache --activate --allow-root
 
 wp plugin update --all --allow-root
 
+wp redis enable --allow-root
+
 wp theme install twentytwentytwo --activate --allow-root
 
 sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
-
-wp redis enable --allow-root
 
 mkdir /run/php
 
