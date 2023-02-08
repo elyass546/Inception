@@ -14,7 +14,15 @@ define( 'DB_COLLATE', '' );
 
 define( 'WP_ALLOW_REPAIR', true );
 
-
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
 
 define( 'AUTH_KEY',         '):Uw9 :|7$m3yy=c^IM%d8}zG6yXY%25SDUyr.r#GcDP)[b25Yn$sDLNwR~I=kwq' );
 
@@ -36,8 +44,12 @@ define ( 'WP_CACHE' , true );
 $table_prefix = 'wp_';
 
 define( 'WP_DEBUG', true );
+
+/** Absolute path to the WordPress directory. */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
+/** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
 ?>
